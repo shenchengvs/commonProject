@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  	<classPathEntry location="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code/lib/mysql-connector-java-5.1.18.jar" />
+
+	<context id="MYSQL2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!-- mysql -->
+	    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+	        connectionURL="jdbc:mysql://172.16.15.55:3306/emcp_1.1"
+	        userId="root"
+	        password="hl3000">
+	    </jdbcConnection>
+	    
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.holley.elecsafe.model.dic" 
+			targetProject="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		 
+		<sqlMapGenerator targetPackage="com.holley.elecsafe.dao.dic.xml"
+			targetProject="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.holley.elecsafe.dao.dic" 
+			targetProject="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		<table catalog="" schema="" tableName="DIC_DETECTOR_PROTOCOL" domainObjectName="DicDetectorProtocol">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		<!-- 
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.holley.platform.dao.dic" 
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<table catalog="" schema="" tableName="DIC_DATAITEM" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="DIC_DATACLASS" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_ACCURACYGRADE" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_PRODUCTTYPE" domainObjectName="DicProductType">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_PRODUCTCLASS" domainObjectName="DicProductClass">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_BUSINESSTYPE" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_CITY" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_ENTERPRISETYPE" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_PRODUCTUNIT" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_APPLIANCETYPE" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_APPLIANCESTATE" domainObjectName="">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<table catalog="" schema="" tableName="DIC_DEVICE_FACTORY" domainObjectName="DicDeviceFactory">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_DEVICE_PROTOCOL" domainObjectName="DicDeviceProtocol">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_CITY" domainObjectName="DicCity">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DIC_BUSINESSTYPE" domainObjectName="DicBusinessType">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		-->
+	</context>
+</generatorConfiguration>

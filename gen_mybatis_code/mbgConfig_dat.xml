@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  	<classPathEntry location="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code/lib/mysql-connector-java-5.1.18.jar" />
+
+	<context id="ORALCE2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!-- oracle -->
+	     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+	        connectionURL="jdbc:mysql://172.16.15.55:3306/emcp_1.1"
+	        userId="root"
+	        password="hl3000">
+	    </jdbcConnection>
+	    
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.holley.elecsafe.model.dat" 
+			targetProject="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code">				
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<sqlMapGenerator targetPackage="com.holley.elecsafe.dao.dat.xml"
+			targetProject="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.holley.elecsafe.dao.dat" 
+			targetProject="D:/holley/project/energy_safe/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		
+		
+ 		
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_L1_REAL" domainObjectName="DatEsDetectorL1Real">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_L1_HIS" domainObjectName="DatEsDetectorL1His">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_L2_REAL" domainObjectName="DatEsDetectorL2Real">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_L2_HIS" domainObjectName="DatEsDetectorL2His">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_FAULT" domainObjectName="DatEsDetectorFault">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_FAULT_DEAL" domainObjectName="DatEsDetectorFaultDeal">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="DAT_ES_DETECTOR_CURSTATUS" domainObjectName="DatEsDetectorCurstatus">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		
+
+		
+	</context>
+</generatorConfiguration>

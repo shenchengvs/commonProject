@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  	<classPathEntry location="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code/lib/mysql-connector-java-5.1.18.jar" />
+
+	<context id="ORALCE2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!-- oracle -->
+	     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+	        connectionURL="jdbc:mysql://172.16.15.55:3306/energyman_pv"
+	        userId="root"
+	        password="hl3000">
+	    </jdbcConnection>
+	    
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.holley.energy.model.obj" 
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">				
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		 
+		<sqlMapGenerator targetPackage="com.holley.energy.dao.obj.xml"
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.holley.energy.dao.obj" 
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<table catalog="" schema="" tableName="OBJ_ENTERPRISE" domainObjectName="ObjEnterprise">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		
+		<!-- 
+		<table catalog="" schema="" tableName="OBJ_POINT" domainObjectName="ObjPoint">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="OBJ_POINTRATECHANGE" domainObjectName="ObjPointRateChange">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="OBJ_POINT_COMMPARAM" domainObjectName="ObjPointCommParam">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="OBJ_RTU" domainObjectName="ObjRtu">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="OBJ_POINT_DATAITEM" domainObjectName="ObjPointDataitem">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+
+		
+		<table catalog="" schema="" tableName="OBJ_POINTMETER_GAS" domainObjectName="ObjPointMeterGas">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_EXAMINECLAUSE" domainObjectName="ObjExamineClause">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_FILEUPLOAD" domainObjectName="ObjFileUpload">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_METER" domainObjectName="ObjMeter">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_PERSONNELINFO" domainObjectName="ObjPersonnelInfo">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_POSITION" domainObjectName="ObjPosition">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_EUENERGYUSEFORMULA" domainObjectName="ObjEuEnergyUseFormula">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_ENTERPRISEYIELDVALUE" domainObjectName="ObjEnterpriseYieldValue">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_EUUENERGYTYPEUSE" domainObjectName="ObjEuuEnergyTypeUse">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_ENTERPRISEENERGY" domainObjectName="ObjEnterpriseEnergy">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_EUDEV" domainObjectName="ObjEuDev">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_DEVENERGY" domainObjectName="ObjDevEnergy">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_ENTERPRISE" domainObjectName="ObjEnterprise">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_ENTERPRISEPRODUCEINFO" domainObjectName="ObjEnterpriseProduceInfo">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_ENTERPRISESTAFF" domainObjectName="ObjEnterpriseStaff">
+			<property name="useActualColumnNames" value="false" />
+		</table>		
+		<table catalog="" schema="szcemd" tableName="OBJ_EUUFORMULA" domainObjectName="ObjEuuFormula">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_ITEMFORMULA" domainObjectName="ObjItemFormula">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_METER" domainObjectName="ObjMeter">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_POINT" domainObjectName="ObjPoint">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_POINTRATECHANGE" domainObjectName="ObjPointRateChange">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_POINT_COMMPARAM" domainObjectName="ObjPointCommParam">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_RTU" domainObjectName="ObjRtu">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_SUBEUU" domainObjectName="ObjSubEuu">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="szcemd" tableName="OBJ_SUBEUUENERGY" domainObjectName="ObjSubEuuEnergy">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="OBJ_POINT_DATAITEM" domainObjectName="ObjPointDataitem">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="OBJ_BALANCEFORMULA" domainObjectName="ObjBalanceFormula">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		 -->
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  	<classPathEntry location="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code/lib/mysql-connector-java-5.1.18.jar" />
+
+	<context id="ORALCE2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<!-- oracle -->
+	     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+	        connectionURL="jdbc:mysql://172.16.15.55:3306/energyman_pv"
+	        userId="root"
+	        password="hl3000">
+	    </jdbcConnection>
+	    
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.holley.platform.model.sys" 
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">				
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		 
+		<sqlMapGenerator targetPackage="com.holley.platform.dao.sys.xml"
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.holley.platform.dao.sys" 
+			targetProject="D:/holley/project/energyman_gf/source/trunk/source/gen_mybatis_code">	
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		
+
+
+		<table catalog="" schema="" tableName="SYS_ACCOUNT" domainObjectName="SysAccount">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_ACCOUNTROLE" domainObjectName="SysAccountRole">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_BUTTONDEF" domainObjectName="SysButtondef">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_HOSTLOG" domainObjectName="SysHostlog">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_MODULEDEF" domainObjectName="SysModuledef">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_ROLE" domainObjectName="SysRole">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_ROLEBUTTON" domainObjectName="SysRoleButton">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_ROLEMODULE" domainObjectName="SysRoleModule">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_WEBLOG" domainObjectName="SysWeblog">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+		<table catalog="" schema="" tableName="SYS_RULE" domainObjectName="SysRule">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+	</context>
+</generatorConfiguration>
