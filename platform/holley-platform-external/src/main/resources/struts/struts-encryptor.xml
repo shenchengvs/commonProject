@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- json -->
+	<package name="encryptor_json" namespace="/encryptor" extends="json-default">
+		<action name="esamV13_*" class="esamV13Action" method="{1}">
+			<result type="json" />
+		</action>
+		<action name="mkCard_*" class="mkCardAction" method="{1}">
+			<result type="json" />
+		</action>
+	</package>
+</struts>

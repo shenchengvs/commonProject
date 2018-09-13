@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.platform.dao.common.CommonMapper">
+	<!-- <select id="createId" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select nextval('${code}')
+	</select> -->
+	
+	<sql id="EntBase_Column_List" >
+	    e.EID, e.DISC, e.OWNERID, e.OWNERTYPE
+  	</sql>
+  	
+		<!-- 根据企业编码查询旗下所有子企业，包括自己企业 -->
+	<sql id="selectChildEntSelfSql">
+		SELECT <include refid="com.holley.platform.dao.common.CommonMapper.EntBase_Column_List"/> 
+		FROM obj_enterprise e 
+		WHERE Find_In_Set(concat(eid,'@11'), Getchildlst(#{eid}, 5))
+	</sql>
+	<!-- 根据企业编码查询旗下所有子企业，不包括自己企业 -->
+	<sql id="selectChildEnt">
+		SELECT <include refid="com.holley.platform.dao.common.CommonMapper.EntBase_Column_List"/> 
+		FROM obj_enterprise e 
+		WHERE Find_In_Set(concat(eid,'@11'), Getchildlst(#{eid}, 5))
+		AND e.eid != #{eid}
+	</sql>
+	
+</mapper>

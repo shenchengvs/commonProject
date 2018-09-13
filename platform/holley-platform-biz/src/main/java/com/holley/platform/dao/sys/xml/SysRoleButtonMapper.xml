@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.platform.dao.sys.SysRoleButtonMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.platform.model.sys.SysRoleButtonKey" >
+    <id column="BUTTONID" property="buttonid" jdbcType="DECIMAL" />
+    <id column="ROLEID" property="roleid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BUTTONID, ROLEID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.platform.model.sys.SysRoleButtonExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_rolebutton
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.platform.model.sys.SysRoleButtonKey" >
+    delete from sys_rolebutton
+    where BUTTONID = #{buttonid,jdbcType=DECIMAL}
+      and ROLEID = #{roleid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.platform.model.sys.SysRoleButtonExample" >
+    delete from sys_rolebutton
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.platform.model.sys.SysRoleButtonKey" >
+    insert into sys_rolebutton (BUTTONID, ROLEID)
+    values (#{buttonid,jdbcType=DECIMAL}, #{roleid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.platform.model.sys.SysRoleButtonKey" >
+    insert into sys_rolebutton
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buttonid != null" >
+        BUTTONID,
+      </if>
+      <if test="roleid != null" >
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buttonid != null" >
+        #{buttonid,jdbcType=DECIMAL},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.platform.model.sys.SysRoleButtonExample" resultType="java.lang.Integer" >
+    select count(*) from sys_rolebutton
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_rolebutton
+    <set >
+      <if test="record.buttonid != null" >
+        BUTTONID = #{record.buttonid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.roleid != null" >
+        ROLEID = #{record.roleid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_rolebutton
+    set BUTTONID = #{record.buttonid,jdbcType=DECIMAL},
+      ROLEID = #{record.roleid,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <delete id="deleteRoleButtonByParam" parameterType="java.util.Map">
+  	DELETE FROM sys_rolebutton
+	 WHERE roleid = #{roleid}
+	   AND buttonid in(
+			SELECT b.buttonid
+			FROM sys_moduledef m,sys_buttondef b
+			WHERE m.moduleid = b.moduleid
+			AND m.SYSTEMID = #{systemid})
+  </delete>
+  
+  <insert id="insertRoleButtonBatch" parameterType="java.util.List">
+  	insert into sys_rolebutton (BUTTONID, ROLEID)
+    values 
+    <foreach collection="list" item="item" separator=",">
+	    (#{item.buttonid,jdbcType=VARCHAR}, #{item.roleid,jdbcType=DECIMAL})
+	</foreach>
+  </insert>
+  
+  <select id="selectRoleButtonByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	SELECT rb.BUTTONID,rb.ROLEID
+	FROM sys_rolebutton rb,sys_buttondef bd,sys_moduledef m
+	WHERE rb.BUTTONID = bd.BUTTONID
+	AND bd.MODULEID = m.MODULEID
+	AND rb.ROLEID = #{roleid}
+	AND m.SYSTEMID = #{systemid}
+  </select>
+</mapper>

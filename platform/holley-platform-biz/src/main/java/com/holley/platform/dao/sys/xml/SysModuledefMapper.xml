@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.platform.dao.sys.SysModuledefMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.platform.model.sys.SysModuledef" >
+    <id column="MODULEID" property="moduleid" jdbcType="VARCHAR" />
+    <result column="SYSTEMID" property="systemid" jdbcType="DECIMAL" />
+    <result column="DISC" property="disc" jdbcType="VARCHAR" />
+    <result column="ISDBLCONFIRM" property="isdblconfirm" jdbcType="DECIMAL" />
+    <result column="IPGROUPID" property="ipgroupid" jdbcType="DECIMAL" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="PARENTMODULEID" property="parentmoduleid" jdbcType="VARCHAR" />
+    <result column="SORTNO" property="sortno" jdbcType="DECIMAL" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="ICON32" property="icon32" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MODULEID, SYSTEMID, DISC, ISDBLCONFIRM, IPGROUPID, URL, PARENTMODULEID, SORTNO, ICON, 
+    NOTE, ICON32
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.platform.model.sys.SysModuledefExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_moduledef
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_moduledef
+    where MODULEID = #{moduleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_moduledef
+    where MODULEID = #{moduleid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.platform.model.sys.SysModuledefExample" >
+    delete from sys_moduledef
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.platform.model.sys.SysModuledef" >
+    insert into sys_moduledef (MODULEID, SYSTEMID, DISC, 
+      ISDBLCONFIRM, IPGROUPID, URL, 
+      PARENTMODULEID, SORTNO, ICON, 
+      NOTE, ICON32)
+    values (#{moduleid,jdbcType=VARCHAR}, #{systemid,jdbcType=DECIMAL}, #{disc,jdbcType=VARCHAR}, 
+      #{isdblconfirm,jdbcType=DECIMAL}, #{ipgroupid,jdbcType=DECIMAL}, #{url,jdbcType=VARCHAR}, 
+      #{parentmoduleid,jdbcType=VARCHAR}, #{sortno,jdbcType=DECIMAL}, #{icon,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{icon32,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.platform.model.sys.SysModuledef" >
+    insert into sys_moduledef
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moduleid != null" >
+        MODULEID,
+      </if>
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+      <if test="disc != null" >
+        DISC,
+      </if>
+      <if test="isdblconfirm != null" >
+        ISDBLCONFIRM,
+      </if>
+      <if test="ipgroupid != null" >
+        IPGROUPID,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="parentmoduleid != null" >
+        PARENTMODULEID,
+      </if>
+      <if test="sortno != null" >
+        SORTNO,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="icon32 != null" >
+        ICON32,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moduleid != null" >
+        #{moduleid,jdbcType=VARCHAR},
+      </if>
+      <if test="systemid != null" >
+        #{systemid,jdbcType=DECIMAL},
+      </if>
+      <if test="disc != null" >
+        #{disc,jdbcType=VARCHAR},
+      </if>
+      <if test="isdblconfirm != null" >
+        #{isdblconfirm,jdbcType=DECIMAL},
+      </if>
+      <if test="ipgroupid != null" >
+        #{ipgroupid,jdbcType=DECIMAL},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentmoduleid != null" >
+        #{parentmoduleid,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="icon32 != null" >
+        #{icon32,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.platform.model.sys.SysModuledefExample" resultType="java.lang.Integer" >
+    select count(*) from sys_moduledef
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_moduledef
+    <set >
+      <if test="record.moduleid != null" >
+        MODULEID = #{record.moduleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.systemid != null" >
+        SYSTEMID = #{record.systemid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.disc != null" >
+        DISC = #{record.disc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdblconfirm != null" >
+        ISDBLCONFIRM = #{record.isdblconfirm,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ipgroupid != null" >
+        IPGROUPID = #{record.ipgroupid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentmoduleid != null" >
+        PARENTMODULEID = #{record.parentmoduleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortno != null" >
+        SORTNO = #{record.sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.icon != null" >
+        ICON = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        NOTE = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon32 != null" >
+        ICON32 = #{record.icon32,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_moduledef
+    set MODULEID = #{record.moduleid,jdbcType=VARCHAR},
+      SYSTEMID = #{record.systemid,jdbcType=DECIMAL},
+      DISC = #{record.disc,jdbcType=VARCHAR},
+      ISDBLCONFIRM = #{record.isdblconfirm,jdbcType=DECIMAL},
+      IPGROUPID = #{record.ipgroupid,jdbcType=DECIMAL},
+      URL = #{record.url,jdbcType=VARCHAR},
+      PARENTMODULEID = #{record.parentmoduleid,jdbcType=VARCHAR},
+      SORTNO = #{record.sortno,jdbcType=DECIMAL},
+      ICON = #{record.icon,jdbcType=VARCHAR},
+      NOTE = #{record.note,jdbcType=VARCHAR},
+      ICON32 = #{record.icon32,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.platform.model.sys.SysModuledef" >
+    update sys_moduledef
+    <set >
+      <if test="systemid != null" >
+        SYSTEMID = #{systemid,jdbcType=DECIMAL},
+      </if>
+      <if test="disc != null" >
+        DISC = #{disc,jdbcType=VARCHAR},
+      </if>
+      <if test="isdblconfirm != null" >
+        ISDBLCONFIRM = #{isdblconfirm,jdbcType=DECIMAL},
+      </if>
+      <if test="ipgroupid != null" >
+        IPGROUPID = #{ipgroupid,jdbcType=DECIMAL},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="parentmoduleid != null" >
+        PARENTMODULEID = #{parentmoduleid,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        SORTNO = #{sortno,jdbcType=DECIMAL},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="icon32 != null" >
+        ICON32 = #{icon32,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MODULEID = #{moduleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.platform.model.sys.SysModuledef" >
+    update sys_moduledef
+    set SYSTEMID = #{systemid,jdbcType=DECIMAL},
+      DISC = #{disc,jdbcType=VARCHAR},
+      ISDBLCONFIRM = #{isdblconfirm,jdbcType=DECIMAL},
+      IPGROUPID = #{ipgroupid,jdbcType=DECIMAL},
+      URL = #{url,jdbcType=VARCHAR},
+      PARENTMODULEID = #{parentmoduleid,jdbcType=VARCHAR},
+      SORTNO = #{sortno,jdbcType=DECIMAL},
+      ICON = #{icon,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      ICON32 = #{icon32,jdbcType=VARCHAR}
+    where MODULEID = #{moduleid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectModuledefByAccount" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	SELECT md.MODULEID, md.SYSTEMID, md.DISC, md.ISDBLCONFIRM, md.IPGROUPID, md.URL, md.PARENTMODULEID, md.SORTNO, md.ICON,md.NOTE
+      FROM SYS_ACCOUNTROLE ar, SYS_ROLEMODULE rm, SYS_MODULEDEF md
+     WHERE ar.ROLEID = rm.ROLEID
+       AND rm.MODULEID = md.MODULEID
+       AND ar.ACCOUNT = #{account}
+	   AND md.SYSTEMID = #{systemid}
+  </select>
+</mapper>

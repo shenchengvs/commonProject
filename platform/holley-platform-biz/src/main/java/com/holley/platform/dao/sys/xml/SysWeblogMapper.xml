@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.platform.dao.sys.SysWeblogMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.platform.model.sys.SysWeblog" >
+    <id column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <id column="SESSIONID" property="sessionid" jdbcType="VARCHAR" />
+    <result column="LOGTIME" property="logtime" jdbcType="TIMESTAMP" />
+    <result column="ONLINETIME" property="onlinetime" jdbcType="DECIMAL" />
+    <result column="SYSTEMID" property="systemid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ACCOUNT, SESSIONID, LOGTIME, ONLINETIME, SYSTEMID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.platform.model.sys.SysWeblogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_weblog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.holley.platform.model.sys.SysWeblogKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_weblog
+    where ACCOUNT = #{account,jdbcType=VARCHAR}
+      and SESSIONID = #{sessionid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.holley.platform.model.sys.SysWeblogKey" >
+    delete from sys_weblog
+    where ACCOUNT = #{account,jdbcType=VARCHAR}
+      and SESSIONID = #{sessionid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.platform.model.sys.SysWeblogExample" >
+    delete from sys_weblog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.platform.model.sys.SysWeblog" >
+    insert into sys_weblog (ACCOUNT, SESSIONID, LOGTIME, 
+      ONLINETIME, SYSTEMID)
+    values (#{account,jdbcType=VARCHAR}, #{sessionid,jdbcType=VARCHAR}, #{logtime,jdbcType=TIMESTAMP}, 
+      #{onlinetime,jdbcType=DECIMAL}, #{systemid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.platform.model.sys.SysWeblog" >
+    insert into sys_weblog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="sessionid != null" >
+        SESSIONID,
+      </if>
+      <if test="logtime != null" >
+        LOGTIME,
+      </if>
+      <if test="onlinetime != null" >
+        ONLINETIME,
+      </if>
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionid != null" >
+        #{sessionid,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="onlinetime != null" >
+        #{onlinetime,jdbcType=DECIMAL},
+      </if>
+      <if test="systemid != null" >
+        #{systemid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.platform.model.sys.SysWeblogExample" resultType="java.lang.Integer" >
+    select count(*) from sys_weblog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_weblog
+    <set >
+      <if test="record.account != null" >
+        ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sessionid != null" >
+        SESSIONID = #{record.sessionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logtime != null" >
+        LOGTIME = #{record.logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.onlinetime != null" >
+        ONLINETIME = #{record.onlinetime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.systemid != null" >
+        SYSTEMID = #{record.systemid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_weblog
+    set ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      SESSIONID = #{record.sessionid,jdbcType=VARCHAR},
+      LOGTIME = #{record.logtime,jdbcType=TIMESTAMP},
+      ONLINETIME = #{record.onlinetime,jdbcType=DECIMAL},
+      SYSTEMID = #{record.systemid,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.platform.model.sys.SysWeblog" >
+    update sys_weblog
+    <set >
+      <if test="logtime != null" >
+        LOGTIME = #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="onlinetime != null" >
+        ONLINETIME = #{onlinetime,jdbcType=DECIMAL},
+      </if>
+      <if test="systemid != null" >
+        SYSTEMID = #{systemid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ACCOUNT = #{account,jdbcType=VARCHAR}
+      and SESSIONID = #{sessionid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.platform.model.sys.SysWeblog" >
+    update sys_weblog
+    set LOGTIME = #{logtime,jdbcType=TIMESTAMP},
+      ONLINETIME = #{onlinetime,jdbcType=DECIMAL},
+      SYSTEMID = #{systemid,jdbcType=DECIMAL}
+    where ACCOUNT = #{account,jdbcType=VARCHAR}
+      and SESSIONID = #{sessionid,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="mergeWeblog" parameterType="com.holley.platform.model.sys.SysWeblog">
+  	replace into sys_weblog (ACCOUNT, SESSIONID, LOGTIME, ONLINETIME, SYSTEMID)
+    values (#{account,jdbcType=VARCHAR},#{sessionid,jdbcType=VARCHAR}, 
+    		#{logtime,jdbcType=TIMESTAMP},#{onlinetime,jdbcType=DECIMAL}, 
+      		#{systemid,jdbcType=DECIMAL})
+  </update>
+  <select id="selectWebLogByPage" parameterType="java.util.Map" resultType="com.holley.platform.model.sys.vo.WebLogVo" >
+ 	SELECT count(1) as count, web.ACCOUNT,a.`NAME` as name,a.TYPE as accountType ,obj.DISC as esname ,MAX(web.LOGTIME) as logtime 
+ 	FROM sys_weblog  web,sys_account a LEFT JOIN obj_enterprise obj  on a.DEPARTMENTID = obj.EID
+	WHERE 1=1
+   <if test="eid != null">
+		and obj.eid=#{eid}
+  	</if>
+  	<if test="keyword != null">
+ 		 AND (
+			 	a.ACCOUNT LIKE CONCAT('%',#{keyword},'%')
+			 OR a.NAME LIKE CONCAT('%',#{keyword},'%')
+			 OR obj.DISC LIKE CONCAT('%',#{keyword},'%')
+	  		)
+  	</if>
+  	 <if test="startDate != null" >
+	   and web.LOGTIME &gt;= #{startDate}
+	 </if>
+	 <if test="endDate != null" >
+	   and web.LOGTIME &lt;#{endDate}
+	 </if>
+  	and  web.ACCOUNT = a.ACCOUNT and web.SYSTEMID = #{systemid}
+	group by web.Account
+  </select>
+  
+  <select id="selectWebLogDetailByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+  select ACCOUNT, LOGTIME from sys_weblog where 1=1
+   <if test="startDate != null" >
+	   and LOGTIME &gt;=#{startDate}
+	 </if>
+	 <if test="endDate != null" >
+	   and LOGTIME &lt;#{endDate}
+	 </if>
+  and ACCOUNT = #{account,jdbcType=VARCHAR}
+  and SYSTEMID = #{systemid}
+   order by LogTime desc
+  </select>
+</mapper>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.holley.platform.dao.sys.SysHostlogMapper" >
+  <resultMap id="BaseResultMap" type="com.holley.platform.model.sys.SysHostlog" >
+    <id column="HOSTLOGID" property="hostlogid" jdbcType="DECIMAL" />
+    <result column="LOGTIME" property="logtime" jdbcType="TIMESTAMP" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="SMALLINT" />
+    <result column="SYSTEMID" property="systemid" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    HOSTLOGID, LOGTIME, ACCOUNT, IP, CONTENT, TYPE, SYSTEMID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.holley.platform.model.sys.SysHostlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_hostlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_hostlog
+    where HOSTLOGID = #{hostlogid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_hostlog
+    where HOSTLOGID = #{hostlogid,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.holley.platform.model.sys.SysHostlogExample" >
+    delete from sys_hostlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.holley.platform.model.sys.SysHostlog" useGeneratedKeys="true" keyProperty="hostlogid">
+    insert into sys_hostlog (HOSTLOGID,LOGTIME,ACCOUNT,IP,CONTENT,TYPE,SYSTEMID)
+    values (#{hostlogid,jdbcType=DECIMAL}, #{logtime,jdbcType=TIMESTAMP}, #{account,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{type,jdbcType=SMALLINT},#{systemid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.holley.platform.model.sys.SysHostlog" useGeneratedKeys="true" keyProperty="hostlogid">
+    insert into sys_hostlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hostlogid != null" >
+        HOSTLOGID,
+      </if>
+      <if test="logtime != null" >
+        LOGTIME,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="systemid != null" >
+        SYSTEMID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hostlogid != null" >
+        #{hostlogid,jdbcType=DECIMAL},
+      </if>
+      <if test="logtime != null" >
+        #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="systemid != null" >
+        #{systemid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.holley.platform.model.sys.SysHostlogExample" resultType="java.lang.Integer" >
+    select count(*) from sys_hostlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_hostlog
+    <set >
+      <if test="record.hostlogid != null" >
+        HOSTLOGID = #{record.hostlogid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.logtime != null" >
+        LOGTIME = #{record.logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.account != null" >
+        ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null" >
+        IP = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=SMALLINT},
+      </if>
+      <if test="record.systemid != null" >
+        SYSTEMID = #{record.systemid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_hostlog
+    set HOSTLOGID = #{record.hostlogid,jdbcType=DECIMAL},
+      LOGTIME = #{record.logtime,jdbcType=TIMESTAMP},
+      ACCOUNT = #{record.account,jdbcType=VARCHAR},
+      IP = #{record.ip,jdbcType=VARCHAR},
+      CONTENT = #{record.content,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=SMALLINT},
+      SYSTEMID = #{record.systemid,jdbcType=DECIMAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.holley.platform.model.sys.SysHostlog" >
+    update sys_hostlog
+    <set >
+      <if test="logtime != null" >
+        LOGTIME = #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="systemid != null" >
+        SYSTEMID = #{systemid,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where HOSTLOGID = #{hostlogid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.holley.platform.model.sys.SysHostlog" >
+    update sys_hostlog
+    set LOGTIME = #{logtime,jdbcType=TIMESTAMP},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=SMALLINT},
+      SYSTEMID = #{systemid,jdbcType=DECIMAL}
+    where HOSTLOGID = #{hostlogid,jdbcType=DECIMAL}
+  </update>
+  <select id="selectSysHostLogByPage"  parameterType="java.util.Map" resultType="com.holley.platform.model.sys.SysHostLogVo">
+      select a.NAME as name,h.LOGTIME, h.ACCOUNT, h.IP, h.CONTENT, h.TYPE
+      from sys_hostlog h,sys_account a
+      where h.ACCOUNT=a.ACCOUNT
+      <if test="endDate !=null">
+         AND h.LOGTIME&lt;#{endDate}
+      </if>
+      <if test="startDate !=null">
+         AND h.LOGTIME&gt;#{startDate}
+      </if>
+      <if test="keyword !=null">
+      	 AND (h.ACCOUNT LIKE CONCAT('%',#{keyword},'%') 
+		   		OR h.CONTENT LIKE CONCAT('%',#{keyword},'%')
+		  		)	  
+      </if>
+      <if test="type !=null">
+          AND h.TYPE=#{type}
+      </if>
+      	  AND h.SYSTEMID=#{systemid}
+      	  ORDER BY h.LOGTIME DESC
+  </select>
+</mapper>
