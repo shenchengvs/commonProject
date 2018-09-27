@@ -1,0 +1,23 @@
+工作区---暂存区---提交
+ssh-keygen -t rsa -C "email@mail.com"
+git pull --rebase origin master拉下来，会自动合并的
+git push -u origin master上传
+git commit filename -m "" 正式提交
+git add filename 提交到缓存库
+git branch xxx 创建分支
+git checkout xxx 切换分支
+git checkout -b xxx 创建并且切换分支
+git branch -d xxx 删除分支
+git branch -D xxx 强制删除分支
+git status 查询状态
+git log查看日志
+git clone git@github.com:shenchengvs/xxx.git 克隆远程仓库到本地
+git checkout -- filename 就是让这个文件回到最近一次git commit或git add时的状态。
+git reset HEAD filename 把暂存区的修改撤销掉（unstage），重新放回工作区
+git log --pretty=oneline filename 一行显示某个文件的log
+
+git reflog filename可以查看的所有的修改操作
+
+git reset --hard HEAD^回退到上一个版本
+
+
